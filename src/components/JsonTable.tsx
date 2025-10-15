@@ -25,7 +25,7 @@ import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight, ArrowUpDown, Do
 import * as XLSX from "xlsx";
 
 interface JsonTableProps {
-  data: any[];
+  data: Record<string, unknown>[];
 }
 
 export function JsonTable({ data }: JsonTableProps) {
@@ -42,7 +42,7 @@ export function JsonTable({ data }: JsonTableProps) {
   };
 
   // Generate columns dynamically based on all keys in the data
-  const columns = useMemo<ColumnDef<any>[]>(() => {
+  const columns = useMemo<ColumnDef<Record<string, unknown>>[]>(() => {
     if (!data || data.length === 0) return [];
 
     // Collect all unique keys from all objects

@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { Textarea } from "@/components/ui/textarea";
 
 interface JsonInputProps {
-  onJsonChange: (data: any[]) => void;
+  onJsonChange: (data: Record<string, unknown>[]) => void;
 }
 
 export function JsonInput({ onJsonChange }: JsonInputProps) {
@@ -46,7 +46,7 @@ export function JsonInput({ onJsonChange }: JsonInputProps) {
 
         setError("Auto-corrected JSON format");
         onJsonChange(parsed);
-      } catch (autoCorrectError) {
+      } catch {
         setError(`Invalid JSON: ${e instanceof Error ? e.message : "Unknown error"}`);
         onJsonChange([]);
       }

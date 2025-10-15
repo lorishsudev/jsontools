@@ -6,7 +6,7 @@ import { JsonInput } from "@/components/JsonInput";
 import { JsonTable } from "@/components/JsonTable";
 
 export default function Home() {
-  const [jsonData, setJsonData] = useState<any[]>([]);
+  const [jsonData, setJsonData] = useState<Record<string, unknown>[]>([]);
 
   return (
     <div className="h-screen w-screen flex flex-col">
