@@ -54,30 +54,36 @@ export function JsonInput({ onJsonChange }: JsonInputProps) {
   }, [inputValue, onJsonChange]);
 
   return (
-    <div className="flex flex-col h-full p-4 bg-gray-50">
-      <div className="mb-2">
-        <h2 className="text-lg font-semibold text-black">JSON Input</h2>
-        <p className="text-sm text-gray-600">
-          Paste your JSON array here (auto-correction enabled)
-        </p>
-      </div>
-
-      {error && (
-        <div className={`mb-2 p-2 rounded text-sm ${
-          error.includes("Auto-corrected")
-            ? "bg-yellow-100 text-yellow-800"
-            : "bg-red-100 text-red-800"
-        }`}>
-          {error}
+    <div className="flex flex-col h-full p-6">
+      <div className="rounded-lg border bg-card shadow-sm flex flex-col h-full">
+        <div className="p-6 pb-4">
+          <h3 className="text-lg font-semibold">JSON Input</h3>
+          <p className="text-sm text-muted-foreground mt-1">
+            Paste your JSON array here (auto-correction enabled)
+          </p>
         </div>
-      )}
 
-      <Textarea
-        value={inputValue}
-        onChange={(e) => setInputValue(e.target.value)}
-        placeholder={`[\n  {"name": "John", "age": 30},\n  {"name": "Jane", "age": 25}\n]`}
-        className="flex-1 font-mono text-sm resize-none text-black"
-      />
+        <div className="px-6">
+          {error && (
+            <div className={`mb-3 p-3 rounded-md text-sm border ${
+              error.includes("Auto-corrected")
+                ? "bg-yellow-50 text-yellow-900 border-yellow-200"
+                : "bg-destructive/10 text-destructive border-destructive/20"
+            }`}>
+              {error}
+            </div>
+          )}
+        </div>
+
+        <div className="flex-1 px-6 pb-6">
+          <Textarea
+            value={inputValue}
+            onChange={(e) => setInputValue(e.target.value)}
+            placeholder={`[\n  {"name": "John", "age": 30},\n  {"name": "Jane", "age": 25}\n]`}
+            className="h-full font-mono text-sm resize-none"
+          />
+        </div>
+      </div>
     </div>
   );
 }
